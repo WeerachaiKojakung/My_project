@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           icon: Icon(Icons.menu),
           color: Colors.grey,
         ),
-        actions: <Widget>[
+        actions: [
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.arrow_forward),
