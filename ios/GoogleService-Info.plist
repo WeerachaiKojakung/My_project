@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>128459830577-dsa5lklrovoms1aosf08o1gs8voevv7v.apps.googleusercontent.com</string>
+	<string>431077842368-kvsed0guibafsdehf5nloe9u4na5kvbi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.128459830577-dsa5lklrovoms1aosf08o1gs8voevv7v</string>
+	<string>com.googleusercontent.apps.431077842368-kvsed0guibafsdehf5nloe9u4na5kvbi</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDF_d-D4VCYi_zl9hHjw8_BUIbf_d_0pPQ</string>
+	<string>AIzaSyDqiDdmtc_iYB5YN2jZsRs9gXP0iTFx0gQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>128459830577</string>
+	<string>431077842368</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>net.codex.fluttersignin</string>
+	<string>com.example.myApp</string>
 	<key>PROJECT_ID</key>
-	<string>flutter--login-53fe8</string>
+	<string>logintutorial-b949a</string>
 	<key>STORAGE_BUCKET</key>
-	<string>flutter--login-53fe8.appspot.com</string>
+	<string>logintutorial-b949a.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:128459830577:ios:d63724a500f3f97eddac10</string>
+	<string>1:431077842368:ios:f8557bb27689a7a0d1fc25</string>
 </dict>
 </plist>

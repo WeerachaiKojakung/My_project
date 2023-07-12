@@ -35,6 +35,43 @@ class _Diseases1State extends State<Diseases1> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: const Text(
+          'Smart TreeBox',
+          style: TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          onPressed: () {},
+          icon: Icon(Icons.arrow_back_ios_new),
+          color: Colors.grey,
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.arrow_forward_ios_outlined),
+            color: Colors.grey,
+          ),
+        ],
+      ),
+      //================================================================
+      // appBar: AppBar(
+      //   title: const Text('โรคที่เกิดขึ้นบ่อยของเขือเทศพุ่มเตี้ย',
+      //       style: TextStyle(color: Colors.black)),
+      //   centerTitle: true,
+      //   backgroundColor: Colors.white,
+      //   elevation: 0,
+      //   leading:IconButton(
+      //     icon: Icon(Icons.arrow_back_ios_new),
+      //     color: Colors.black,
+      //     onPressed: () {
+      //       Navigator.pop(context);
+      //     },
+      //   ) ,
+      // ),
+      //================================================================
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
