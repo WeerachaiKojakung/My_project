@@ -37,114 +37,36 @@ class _Diseases1State extends State<Diseases1> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
-          'Smart TreeBox',
+          'รายละเอียด',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+              Navigator.of(context).pop();
+          },
           icon: Icon(Icons.arrow_back_ios_new),
           color: Colors.grey,
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => Diseases2()),
+              );
+            },
             icon: Icon(Icons.arrow_forward_ios_outlined),
             color: Colors.grey,
           ),
         ],
       ),
-      //================================================================
-      // appBar: AppBar(
-      //   title: const Text('โรคที่เกิดขึ้นบ่อยของเขือเทศพุ่มเตี้ย',
-      //       style: TextStyle(color: Colors.black)),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      //   leading:IconButton(
-      //     icon: Icon(Icons.arrow_back_ios_new),
-      //     color: Colors.black,
-      //     onPressed: () {
-      //       Navigator.pop(context);
-      //     },
-      //   ) ,
-      // ),
-      //================================================================
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(height: 15),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black12,
-                        ),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        "รายละเอียด",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.black12,
-                        ),
-                      ),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => Diseases2()),
-                          );
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.arrow_forward_ios_outlined  ,
-                            color: Colors.black54,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Image.asset(
                 "assets/images/diseases1.jpg",
                 height: MediaQuery.of(context).size.height / 2,

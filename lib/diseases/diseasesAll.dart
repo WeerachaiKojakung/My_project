@@ -10,7 +10,8 @@ import 'package:my_app/diseases/diseases6.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+    );
   runApp(const MyApp());
 }
 
@@ -40,6 +41,7 @@ class _DiseasesScreenState extends State<DiseasesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('โรคที่เกิดขึ้นบ่อยของเขือเทศพุ่มเตี้ย',
             style: TextStyle(color: Colors.black)),
         centerTitle: true,

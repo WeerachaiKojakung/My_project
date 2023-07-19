@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/species/speciesAll.dart';
 import 'package:my_app/diseases/diseasesAll.dart';
+import 'package:my_app/login/NavBar.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -39,6 +40,10 @@ class _HomeScreenState extends State<HomeScreen> {
   ) {
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.grey,
+        ),
+        //automaticallyImplyLeading: false,
         title: const Text(
           'Smart TreeBox',
           style: TextStyle(color: Colors.black),
@@ -46,19 +51,20 @@ class _HomeScreenState extends State<HomeScreen> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu),
-          color: Colors.grey,
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.arrow_forward),
-            color: Colors.grey,
-          ),
-        ],
+        // leading: IconButton(
+        //   onPressed: () {},
+        //   icon: Icon(Icons.menu),
+        //   color: Colors.grey,
+        // ),
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(Icons.arrow_forward),
+        //     color: Colors.grey,
+        //   ),
+        // ],
       ),
+      drawer: NavBar(),
       body: SingleChildScrollView(
         padding: EdgeInsetsDirectional.all(10),
         //child: SingleChildScrollView(
