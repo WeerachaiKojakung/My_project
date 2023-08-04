@@ -77,26 +77,49 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login Page')),
-      body: Center(
-        child: FloatingActionButton.extended(
-          onPressed: () {
-            controller.login();
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
-          },
-          icon: Image.asset(
-            "assets/images/google.png",
-            height: 32,
-            width: 32,
+      // appBar: AppBar(title: const Text('Login Page')),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              image: DecorationImage(
+                image: AssetImage("assets/images/Frame1.jpg"),
+                fit: BoxFit.cover,
+              ),
+              //   image: DecorationImage(
+              //     fit: BoxFit.fill,
+              //     image: NetworkImage(
+              //         'https://oflutter.com/wp-content/uploads/2021/02/profile-bg3.jpg'),
+              //   ),
+            ),
           ),
-          label: const Text('sign in with Google'),
-          backgroundColor: Colors.white,
-          foregroundColor: Colors.black,
-        ),
+          Center(
+            child: Transform.translate(
+              offset: Offset(0, 250),
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  controller.login();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
+                icon: Image.asset(
+                  "assets/images/google.png",
+                  height: 32,
+                  width: 32,
+                ),
+                label: const Text('Sign in with Google'),
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.black,
+              ),
+            ),
+          ),
+        ],
       ),
+      // ),
     );
   }
 }

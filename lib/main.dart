@@ -1,8 +1,13 @@
+
 import 'package:flutter/material.dart';
 import 'package:my_app/login/login_page.dart';
 import 'package:get/get.dart';
+import 'package:my_app/login/login_controller.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final controller = Get.put(LoginController());
+  await controller.checkLoginStatus();
   runApp(const MyApp());
 }
 

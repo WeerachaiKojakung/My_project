@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:my_app/login/login_controller.dart';
+import 'package:my_app/login/login_controller.dart';
 import 'package:my_app/login/login_page.dart';
 
 class NavBar extends StatelessWidget {
+  final LoginController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -12,17 +14,25 @@ class NavBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Oflutter.com'),
-            accountEmail: Text('example@gmail.com'),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.network(
-                  'https://oflutter.com/wp-content/uploads/2021/02/girl-profile.png',
-                  fit: BoxFit.cover,
-                  width: 90,
-                  height: 90,
+            accountName: Text(
+              controller.googleAccount.value?.displayName ?? '',
+              style: TextStyle(
+              color: Colors.white, 
+                fontSize: 22, 
                 ),
               ),
+            accountEmail: Text(
+              controller.googleAccount.value?.email ?? '',
+              style: TextStyle(
+                color: Colors.white, 
+                fontSize: 16,
+                ),
+              ),
+              
+            currentAccountPicture: CircleAvatar(
+                backgroundImage: Image.network(
+                      controller.googleAccount.value?.photoUrl ?? '')
+                  .image
             ),
             decoration: BoxDecoration(
               color: Colors.blue,
@@ -70,9 +80,10 @@ class NavBar extends StatelessWidget {
             title: Text('Exit'),
             leading: Icon(Icons.exit_to_app),
             onTap: () {
-                Get.offAll(LoginPage());
-              },
-            ),
+              Get.offAll(LoginPage());
+              controller.logout();
+            },
+          ),
         ],
       ),
     );
