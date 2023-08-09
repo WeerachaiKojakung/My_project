@@ -8,8 +8,8 @@ import 'package:my_app/login/NavBar.dart';
 import 'package:my_app/species/speciesAll.dart'; // Import the speciesAll.dart file
 import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dart file
 
-String SERVER = 'http://10.0.2.2'; //emulator
-// var SERVER = "http://192.168.123.101";
+//String SERVER = 'http://10.0.2.2'; //emulator
+String SERVER = "http://192.168.123.101";
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -113,42 +113,44 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
-                        // child: FutureBuilder<Response>(
-                        //   future: Dio().get('$SERVER/tomato/getDisease.php'),
-                        //   builder: (BuildContext context,
-                        //       AsyncSnapshot<Response> snapshot) {
-                        //     if (snapshot.connectionState ==
-                        //         ConnectionState.waiting) {
-                        //       return Center(child: CircularProgressIndicator());
-                        //     } else if (snapshot.hasError) {
-                        //       return Text('Error!! ${snapshot.error}');
-                        //     } else if (snapshot.hasData) {
-                        //       var res = snapshot.data!.data;
-                        //       var json = jsonDecode(res);
-                        //       var imageUrl = json[0]['disease_pic'].toString();
-                        //       return imageUrl.isNotEmpty
-                        //           ? Center(
-                        //               child: Image.network(
-                        //                 '$SERVER/tomato/images/$imageUrl',
-                        //                 width:
-                        //                     MediaQuery.of(context).size.width *
-                        //                         0.9,fit: BoxFit.cover,
-                        //               ),
-                        //             )
-                        //           : SizedBox();
-                        //     } else {
-                        //       return Text('No Data');
-                        //     }
-                        //   },
-                        // ),
+                        child: FutureBuilder<Response>(
+                          future : Dio().get('$SERVER/tomato/getDisease.php'),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<Response> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Center(child: CircularProgressIndicator());
+                            } else if (snapshot.hasError) {
+                              // return Text('Error!! ${snapshot.error}');
+                              print('Error!! ${snapshot.error}');
+                            return Text('Error fetching data.');
+                            } else if (snapshot.hasData) {
+                              var res = snapshot.data!.data;
+                              var json = jsonDecode(res);
+                              var imageUrl = json[0]['disease_pic'].toString();
+                              return imageUrl.isNotEmpty
+                                  ? Center(
+                                      child: Image.network(
+                                        '$SERVER/tomato/images/$imageUrl',
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  : SizedBox();
+                            } else {
+                              return Text('No Data');
+                            }
+                          },
+                        ),
 
                         
-                        child: Image.asset(
-                          "assets/images/t_1.jpg",
-                          width: 120,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
+                        // child: Image.asset(
+                        //   "assets/images/t_1.jpg",
+                        //   width: 120,
+                        //   height: 150,
+                        //   fit: BoxFit.cover,
+                        // ),
                         // ),
                       ),
                     ),
@@ -237,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             FutureBuilder(
               future: Dio().get('$SERVER/tomato/getDisease.php'),
-              builder: (context, snapshot) {
+              builder: (context, AsyncSnapshot<Response> snapshot) {
                 if (snapshot.hasData) {
                   final res = snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
                   if (res!.data.toString().isEmpty) {
