@@ -9,6 +9,7 @@ void main() async {
   final controller = Get.put(LoginController());
   await controller.checkLoginStatus();
   runApp(const MyApp());
+  
 }
 
 class MyApp extends StatelessWidget {

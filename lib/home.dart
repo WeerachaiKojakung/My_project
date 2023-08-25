@@ -5,11 +5,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/login/NavBar.dart';
+import 'package:my_app/statistics/add_statistics.dart';
 import 'package:my_app/species/speciesAll.dart'; // Import the speciesAll.dart file
 import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dart file
 
 //String SERVER = 'http://10.0.2.2'; //emulator
-String SERVER = "http://192.168.123.101";
+//String SERVER = "http://192.168.123.101";
+//String SERVER = "http://192.168.1.12";
+String SERVER = "http://10.50.10.26";
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -25,8 +28,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Smart TreeBox App',
-      theme: ThemeData(primarySwatch: Colors.green),
+      theme: ThemeData(primarySwatch: Colors.green
+      ),
       home: const HomeScreen(),
+      //home: const ButtonPage(),
     );
   }
 }
@@ -41,10 +46,9 @@ class HomeScreen extends StatefulWidget {
 String status = 'away';
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context,) {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -55,9 +59,22 @@ class _HomeScreenState extends State<HomeScreen> {
           'Smart TreeBox',
           style: TextStyle(color: Colors.black),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AddStatisticsPage()),
+              );
+            },
+            icon: Icon(Icons.add_circle_outline_sharp),
+            color: Colors.grey,
+          ),
+        ],
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        
         // leading: IconButton(
         //   onPressed: () {},
         //   icon: Icon(Icons.menu),
@@ -96,6 +113,50 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Row(
                   children: [
+            //         Text(
+            //   'ค่าล่าสุด',
+            //   style: TextStyle(
+            //     fontSize: 22.0,
+            //   ),
+            // ),
+            // FutureBuilder(
+            //   future: Dio().get('$SERVER/tomato/getDisease.php'),
+            //   builder: (context, AsyncSnapshot<Response> snapshot) {
+            //     if (snapshot.hasData) {
+            //       final res = snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
+            //       if (res!.data.toString().isEmpty) {
+            //         return Text('Val Err!!');
+            //       } else {
+            //         final json = jsonDecode(res.data);
+            //         log('json:$json');
+            //         return Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Text('disease_id = ${json[0]['disease_id']}'),
+            //             Text('disease_dt = ${json[0]['disease_dt']}'),
+            //             Text('disease_pic = ${json[0]['disease_pic']}'),
+            //             Text('disease_ret1 = ${json[0]['disease_ret1']}'),
+            //             Text('disease_ret2 = ${json[0]['disease_ret2']}'),
+            //             Text('disease_ret3 = ${json[0]['disease_ret3']}'),
+            //             json[0]['disease_pic'].toString().isNotEmpty
+            //                 ? Center(
+            //                     child: Image.network(
+            //                       '$SERVER/tomato/images/${json[0]['disease_pic']}',
+            //                       width:
+            //                           MediaQuery.of(context).size.width * 0.9,
+            //                     ),
+            //                   )
+            //                 : SizedBox(),
+            //           ],
+            //         );
+            //       }
+            //     } else if (snapshot.hasError) {
+            //       return Text('Error!! ${snapshot.error}');
+            //     } else {
+            //       return Center(child: CircularProgressIndicator());
+            //     }
+            //   },
+            // ),
                     InkWell(
                       onTap: () {},
                       child: Container(
@@ -275,38 +336,38 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               },
             ),
-            SizedBox(height: 20.0),
-            FutureBuilder(
-              future: Dio().get('$SERVER/tomato/getLogging.php'),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final res = snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
-                  if (res!.data.toString().isEmpty) {
-                    return Text('Val Err!!');
-                  } else {
-                    final json = jsonDecode(res.data);
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('val1 = ${json[0]['log_val1']}'),
-                        Text('val2 = ${json[0]['log_val2']}'),
-                        Text('val3 = ${json[0]['log_val3']}'),
-                        Text('val4 = ${json[0]['log_val4']}'),
-                        Text('val5 = ${json[0]['log_val5']}'),
-                        Text('val6 = ${json[0]['log_val6']}'),
-                        Text('val7 = ${json[0]['log_val7']}'),
-                        Text('val8 = ${json[0]['log_val8']}'),
-                        Text('val9 = ${json[0]['log_val9']}'),
-                      ],
-                    );
-                  }
-                } else if (snapshot.hasError) {
-                  return Text('Error!! ${snapshot.error}');
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
+            // SizedBox(height: 20.0),
+            // FutureBuilder(
+            //   future: Dio().get('$SERVER/tomato/getLogging.php'),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       final res = snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
+            //       if (res!.data.toString().isEmpty) {
+            //         return Text('Val Err!!');
+            //       } else {
+            //         final json = jsonDecode(res.data);
+            //         return Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Text('val1 = ${json[0]['log_val1']}'),
+            //             Text('val2 = ${json[0]['log_val2']}'),
+            //             Text('val3 = ${json[0]['log_val3']}'),
+            //             Text('val4 = ${json[0]['log_val4']}'),
+            //             Text('val5 = ${json[0]['log_val5']}'),
+            //             Text('val6 = ${json[0]['log_val6']}'),
+            //             Text('val7 = ${json[0]['log_val7']}'),
+            //             Text('val8 = ${json[0]['log_val8']}'),
+            //             Text('val9 = ${json[0]['log_val9']}'),
+            //           ],
+            //         );
+            //       }
+            //     } else if (snapshot.hasError) {
+            //       return Text('Error!! ${snapshot.error}');
+            //     } else {
+            //       return Center(child: CircularProgressIndicator());
+            //     }
+            //   },
+            // ),
             const SizedBox(height: 5),
             Container(
               padding: const EdgeInsets.only(left: 25),
@@ -693,6 +754,42 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+        //เมนูบารข้างล่าง
+      // extendBody: true,
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(Icons.add),
+      // ),
+      // bottomNavigationBar: BottomAppBar(
+      //   shape: const CircularNotchedRectangle(),
+      //   color: Theme.of(context).colorScheme.primary,
+      //   child: Padding(
+      //     padding: const EdgeInsets.all(0),
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //       children: [
+      //         IconButton(
+      //           icon: const Icon(Icons.home),
+      //           onPressed: () {},
+      //         ),
+      //         IconButton(
+      //           icon: const Icon(Icons.list),
+      //           onPressed: () {},
+      //         ),
+      //         const SizedBox(width: 24),
+      //         IconButton(
+      //           icon: const Icon(Icons.person),
+      //           onPressed: () {},
+      //         ),
+      //         IconButton(
+      //           icon: const Icon(Icons.settings),
+      //           onPressed: () {},
+      //         ),
+      //       ],
+      //     ),
+      //   ),
+      // ),
       //),
     );
   }
@@ -724,3 +821,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 }
+
+
+
+
