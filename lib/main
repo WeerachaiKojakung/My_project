@@ -100,46 +100,46 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 22.0,
                     ),
                   ),
-                  FutureBuilder(
-                    future: Dio().get('$SERVER/tomato/getDisease.php'),
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        final res =
-                            snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
-                        if (res!.data.toString().isEmpty) {
-                          return Text('Val Err!!');
-                        } else {
-                          final json = jsonDecode(res.data);
-                          log('json:$json');
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('disease_id = ${json[0]['disease_id']}'),
-                              Text('disease_dt = ${json[0]['disease_dt']}'),
-                              Text('disease_pic = ${json[0]['disease_pic']}'),
-                              Text('disease_ret1 = ${json[0]['disease_ret1']}'),
-                              Text('disease_ret2 = ${json[0]['disease_ret2']}'),
-                              Text('disease_ret3 = ${json[0]['disease_ret3']}'),
-                              json[0]['disease_pic'].toString().isNotEmpty
-                                  ? Center(
-                                      child: Image.network(
-                                        '$SERVER/tomato/images/${json[0]['disease_pic']}',
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                      ),
-                                    )
-                                  : SizedBox(),
-                            ],
-                          );
-                        }
-                      } else if (snapshot.hasError) {
-                        return Text('Error!! ${snapshot.error}');
-                      } else {
-                        return Center(child: CircularProgressIndicator());
-                      }
-                    },
-                  ),
+                  // FutureBuilder(
+                  //   future: Dio().get('$SERVER/tomato/getDisease.php'),
+                  //   builder: (context, snapshot) {
+                  //     if (snapshot.hasData) {
+                  //       final res =
+                  //           snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
+                  //       if (res!.data.toString().isEmpty) {
+                  //         return Text('Val Err!!');
+                  //       } else {
+                  //         final json = jsonDecode(res.data);
+                  //         log('json:$json');
+                  //         return Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Text('disease_id = ${json[0]['disease_id']}'),
+                  //             Text('disease_dt = ${json[0]['disease_dt']}'),
+                  //             Text('disease_pic = ${json[0]['disease_pic']}'),
+                  //             Text('disease_ret1 = ${json[0]['disease_ret1']}'),
+                  //             Text('disease_ret2 = ${json[0]['disease_ret2']}'),
+                  //             Text('disease_ret3 = ${json[0]['disease_ret3']}'),
+                  //             json[0]['disease_pic'].toString().isNotEmpty
+                  //                 ? Center(
+                  //                     child: Image.network(
+                  //                       '$SERVER/tomato/images/${json[0]['disease_pic']}',
+                  //                       width:
+                  //                           MediaQuery.of(context).size.width *
+                  //                               0.9,
+                  //                     ),
+                  //                   )
+                  //                 : SizedBox(),
+                  //           ],
+                  //         );
+                  //       }
+                  //     } else if (snapshot.hasError) {
+                  //       return Text('Error!! ${snapshot.error}');
+                  //     } else {
+                  //       return Center(child: CircularProgressIndicator());
+                  //     }
+                  //   },
+                  // ),
                   SizedBox(height: 20.0),
                   FutureBuilder(
                     future: Dio().get('$SERVER/tomato/getLogging.php'),

@@ -11,8 +11,8 @@ import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dar
 
 //String SERVER = 'http://10.0.2.2'; //emulator
 //String SERVER = "http://192.168.123.101";
-//String SERVER = "http://192.168.1.12";
-String SERVER = "http://10.50.10.26";
+String SERVER = "http://192.168.1.12";
+//String SERVER = "http://10.50.10.26";
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -64,7 +64,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddStatisticsPage(title: "")),
+                MaterialPageRoute(builder: (context) => AddStatisticsPage()),
               );
             },
             icon: Icon(Icons.add_circle_outline_sharp),
@@ -769,7 +769,7 @@ Container(
                 child: Text(
                   "เซนเซอร์ความเข้มแสง",
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.black87,
                   ),
@@ -817,47 +817,6 @@ Container(
     },
   ),
 ),
-
-          ],
-        ),
-      ),
-      //เมนูบารข้างล่าง
-      // extendBody: true,
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.add),
-      // ),
-      // bottomNavigationBar: BottomAppBar(
-      //   shape: const CircularNotchedRectangle(),
-      //   color: Theme.of(context).colorScheme.primary,
-      //   child: Padding(
-      //     padding: const EdgeInsets.all(0),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-      //       children: [
-      //         IconButton(
-      //           icon: const Icon(Icons.home),
-      //           onPressed: () {},
-      //         ),
-      //         IconButton(
-      //           icon: const Icon(Icons.list),
-      //           onPressed: () {},
-      //         ),
-      //         const SizedBox(width: 24),
-      //         IconButton(
-      //           icon: const Icon(Icons.person),
-      //           onPressed: () {},
-      //         ),
-      //         IconButton(
-      //           icon: const Icon(Icons.settings),
-      //           onPressed: () {},
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
-      //),
     );
   }
 
@@ -888,4 +847,7 @@ Container(
         ),
       );
 }
+
+
+
 
