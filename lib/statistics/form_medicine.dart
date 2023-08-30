@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 /// Flutter code sample for [showDatePicker].
-
+//String SERVER = "http://192.168.1.12";
+String SERVER = "http://10.50.10.26";
 void main() => runApp(const DatePickerApp());
 
 class DatePickerApp extends StatelessWidget {
