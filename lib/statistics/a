@@ -1,63 +1,8 @@
+ไฟล์ add_statistics.dart.  
 // import 'package:flutter/material.dart';
- //import 'package:my_app/statistics/form_tomato.dart';
+ import 'package:my_app/statistics/form_tomato.dart';
  import 'package:my_app/statistics/form_medicine.dart';
  import 'package:my_app/new/add_home.dart';
-
-// class AddStatisticsPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('เพิ่มข้อมูลต้นมะเขือเทศและการให้ยา', style: TextStyle(color: Colors.black)),
-//         centerTitle: true,
-//         backgroundColor: Colors.white,
-//         elevation: 0,
-//         leading:IconButton(
-//           icon: Icon(Icons.arrow_back_ios_new),
-//           color: Colors.black,
-//           onPressed: () {
-//             Navigator.pop(context);
-//           },
-//         )
-//       ),
-//       body:  ListView(
-//         padding: EdgeInsets.zero,
-//         children: [
-//           Divider(),
-//           ListTile(
-//             leading: Icon(Icons.add_box_outlined),
-//             title: Text('เพิ่มข้อมูลต้นมะเขือเทศ'),
-//             onTap: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
-//               );
-//             },
-//           ),
-//           Divider(),
-//           ListTile(
-//             leading: Icon(Icons.add_box_outlined),
-//             title: Text('เพิ่มข้อมูลการให้ยา'),
-//             onTap: () {
-//               Navigator.push(
-//                 context,
-//                 MaterialPageRoute(builder: (context) => DatePickerExample()),
-//               );
-//             },
-//           ),
-//           Divider(),
-//           ListTile(
-//             leading: Icon(Icons.add_box_outlined),
-//             title: Text('เพิ่มข้อมูลการให้ปุ๋ย'),
-//             onTap: () => null,
-//           ),
-//           Divider(),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 class AddStatisticsPage extends StatefulWidget {
@@ -73,7 +18,7 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
@@ -113,17 +58,17 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
                   ),
                 ),
               ),
-              // Tab(
-              //   child: IconTheme(
-              //     data: IconThemeData(color: Colors.grey),
-              //     child: Column(
-              //       children: [
-              //         Icon(Icons.account_box_outlined),
-              //         Text("เกี่ยวกับ", style: TextStyle(color: Colors.black)),
-              //       ],
-              //     ),
-              //   ),
-              // ),
+              Tab(
+                child: IconTheme(
+                  data: IconThemeData(color: Colors.grey),
+                  child: Column(
+                    children: [
+                      Icon(Icons.account_box_outlined),
+                      Text("เกี่ยวกับ", style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -131,7 +76,7 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
           children: [
             PageToday(),
             PageHistory(),
-            // ScreenPage3(),
+            ScreenPage3(),
           ],
         ),
       ),
@@ -154,8 +99,8 @@ class PageToday extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                //MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
-              MaterialPageRoute(builder: (context) => AddHome()),
+                MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
+              //MaterialPageRoute(builder: (context) => AddHome()),
               );
             },
           ),
@@ -234,4 +179,3 @@ class ScreenPage3 extends StatelessWidget {
     );
   }
 }
-

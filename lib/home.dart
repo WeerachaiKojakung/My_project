@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_app/login/NavBar.dart';
+//import 'package:my_app/new/add_home.dart';
 import 'package:my_app/statistics/add_statistics.dart';
 import 'package:my_app/species/speciesAll.dart'; // Import the speciesAll.dart file
 import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dart file
@@ -13,6 +14,7 @@ import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dar
 //String SERVER = "http://192.168.123.101";
 //String SERVER = "http://192.168.1.12";
 String SERVER = "http://10.50.10.26";
+
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -65,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => AddStatisticsPage(title: "")),
+                //MaterialPageRoute(builder: (context) => AddHome()),
               );
             },
             icon: Icon(Icons.add_circle_outline_sharp),

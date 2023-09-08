@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
+//import 'package:mysql_flutter/logic/models/mysql.dart';
+//http://192.168.1.221/
+import 'mysql.dart';
 
 class TormTomatoPage extends StatefulWidget {
   @override
@@ -14,6 +17,7 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
   final TextEditingController _amountController = TextEditingController();
   final TextEditingController _schoolsController = TextEditingController();
   final TextEditingController _daysController = TextEditingController();
+  
 
   @override
   void dispose() {
@@ -24,7 +28,7 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
     _daysController.dispose();
     super.dispose();
   }
-
+  var db = new Mysql();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -148,3 +152,6 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
     );
   }
 }
+
+// ต้องการให้ กดบันทึกข้อมูลจาก form_tomato.dart 
+// บันทึกข้อมูลไปยังadd_statistics.dart  ประวัติและเก็บข้อมูลที่กรอกไว้ใน ข้อมูลต้นมะเขือเทศ
