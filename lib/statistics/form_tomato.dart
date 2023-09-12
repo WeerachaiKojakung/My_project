@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 //import 'package:intl/intl.dart';
 //import 'package:mysql_flutter/logic/models/mysql.dart';
 //http://192.168.1.221/
+
+import 'b.dart';
+import 'data_provider.dart';
 import 'mysql.dart';
 
 class TormTomatoPage extends StatefulWidget {
@@ -135,12 +139,33 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    // Form is valid, you can process the data
-                    print('Date of Planting: ${_dateController.text}');
-                    print('Cultivar: ${_cultivarController.text}');
-                    print('Amount Planted: ${_amountController.text}');
-                    print('Schools: ${_schoolsController.text}');
-                    print('Days of Planting: ${_daysController.text}');
+                    // // Form is valid, you can process the data
+                    // print('Date of Planting: ${_dateController.text}');
+                    // print('Cultivar: ${_cultivarController.text}');
+                    // print('Amount Planted: ${_amountController.text}');
+                    // print('Schools: ${_schoolsController.text}');
+                    // print('Days of Planting: ${_daysController.text}');
+                    // ดึงข้อมูลจาก TextControllers
+                    final newDateTime = _dateTimeController.text;
+                    final newCultivar = _cultivarController.text;
+                    final newAmount = _amountController.text;
+                    final newSchools = _schoolsController.text;
+                    final newDays = _daysController.text;
+
+                    // เรียกใช้ Provider เพื่ออัปเดตข้อมูล
+                    Provider.of<DataProvider>(context, listen: false).updateData(
+                      newDateTime: newDateTime,
+                      newCultivar: newCultivar,
+                      newAmount: newAmount,
+                      newSchools: newSchools,
+                      newDays: newDays,
+                    );
+                      // ส่งข้อมูลไปยังหน้า b.dart
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => b()),
+                    );
+
                   }
                 },
                 child: Text('บันทึกข้อมูล'),

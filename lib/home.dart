@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Last value',
+                      'ค่าล่าสุด',
                       style: TextStyle(
                         fontSize: 22.0,
                       ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_app/login/login_controller.dart';
 import 'package:my_app/login/login_page.dart';
+import 'package:my_app/login/medicine.dart';
+
 
 class NavBar extends StatelessWidget {
   final LoginController controller = Get.find();
@@ -51,7 +53,11 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Request'),
-            onTap: () => null,
+            //onTap: () => null,
+            
+            onTap: () {
+                Get.to(() => MyWidget()); // แทน Medicine() ด้วยหน้าที่คุณต้องการเปิด
+              },
             trailing: ClipOval(
               child: Container(
                 color: Colors.red,
@@ -80,8 +86,8 @@ class NavBar extends StatelessWidget {
             title: Text('Exit'),
             leading: Icon(Icons.exit_to_app),
             onTap: () {
-              Get.offAll(LoginPage());
               controller.logout();
+              Get.offAll(LoginPage());
             },
           ),
         ],

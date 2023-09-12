@@ -1,8 +1,10 @@
-ไฟล์ add_statistics.dart.  
 // import 'package:flutter/material.dart';
+import 'package:my_app/statistics/b.dart';
  import 'package:my_app/statistics/form_tomato.dart';
  import 'package:my_app/statistics/form_medicine.dart';
  import 'package:my_app/new/add_home.dart';
+
+
 import 'package:flutter/material.dart';
 
 class AddStatisticsPage extends StatefulWidget {
@@ -18,7 +20,7 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 2,
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
@@ -58,17 +60,6 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
                   ),
                 ),
               ),
-              Tab(
-                child: IconTheme(
-                  data: IconThemeData(color: Colors.grey),
-                  child: Column(
-                    children: [
-                      Icon(Icons.account_box_outlined),
-                      Text("เกี่ยวกับ", style: TextStyle(color: Colors.black)),
-                    ],
-                  ),
-                ),
-              ),
             ],
           ),
         ),
@@ -76,7 +67,7 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
           children: [
             PageToday(),
             PageHistory(),
-            ScreenPage3(),
+            // ScreenPage3(),
           ],
         ),
       ),
@@ -143,7 +134,8 @@ class PageHistory extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
+                // MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
+              MaterialPageRoute(builder: (context) => b()),
               );
             },
           ),
@@ -179,3 +171,6 @@ class ScreenPage3 extends StatelessWidget {
     );
   }
 }
+
+
+

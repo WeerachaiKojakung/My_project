@@ -1,7 +1,8 @@
 // import 'package:flutter/material.dart';
- //import 'package:my_app/statistics/form_tomato.dart';
+ import 'package:my_app/statistics/form_tomato.dart';
  import 'package:my_app/statistics/form_medicine.dart';
- import 'package:my_app/new/add_home.dart';
+ //import 'package:my_app/new/add_home.dart';
+import 'package:my_app/statistics/b.dart';
 
 // class AddStatisticsPage extends StatelessWidget {
 //   @override
@@ -154,8 +155,8 @@ class PageToday extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                //MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
-              MaterialPageRoute(builder: (context) => AddHome()),
+                MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
+              //MaterialPageRoute(builder: (context) => AddHome()),
               );
             },
           ),
@@ -198,7 +199,8 @@ class PageHistory extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
+                //MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
+                MaterialPageRoute(builder: (context) => b()),
               );
             },
           ),
