@@ -1,14 +1,23 @@
 import 'package:flutter/foundation.dart';
 
 class DataProvider with ChangeNotifier {
+  List<String> dataList = []; // เพิ่ม List สำหรับเก็บข้อมูล
+
+  // ฟังก์ชันเพิ่มข้อมูลลงใน dataList
+  void addData(String newData) {
+    dataList.add(newData);
+    notifyListeners();
+  }
+
   String dateTime = '';
   String cultivar = '';
   String amount = '';
   String schools = '';
   String days = '';
 
+  // ฟังก์ชันอัปเดตข้อมูลที่รับมา
   void updateData({
-    required String newDateTime, // เพิ่ม required modifier
+    required String newDateTime,
     String newCultivar = '',
     String newAmount = '',
     String newSchools = '',

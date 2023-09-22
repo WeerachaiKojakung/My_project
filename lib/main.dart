@@ -31,7 +31,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/login/login_page.dart';
 import 'package:get/get.dart';
-import 'package:my_app/login/login_controller.dart';
+//import 'package:my_app/login/login_controller.dart';
 import 'package:my_app/statistics/data_provider.dart'; // นำเข้าไฟล์ data_provider.dart
 import 'package:provider/provider.dart'; // เพิ่มการนำเข้า Provider
 

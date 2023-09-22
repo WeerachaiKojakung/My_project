@@ -1,11 +1,8 @@
 // import 'package:flutter/material.dart';
-import 'package:my_app/statistics/b.dart';
  import 'package:my_app/statistics/form_tomato.dart';
  import 'package:my_app/statistics/form_medicine.dart';
  import 'package:my_app/new/add_home.dart';
-
-
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
 class AddStatisticsPage extends StatefulWidget {
   const AddStatisticsPage({Key? key, required this.title}) : super(key: key);
@@ -90,8 +87,8 @@ class PageToday extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
-              //MaterialPageRoute(builder: (context) => AddHome()),
+                //MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
+              MaterialPageRoute(builder: (context) => AddHome()),
               );
             },
           ),
@@ -134,8 +131,8 @@ class PageHistory extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                // MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
-              MaterialPageRoute(builder: (context) => b()),
+                MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
+                //MaterialPageRoute(builder: (context) => b()),
               );
             },
           ),
@@ -171,6 +168,4 @@ class ScreenPage3 extends StatelessWidget {
     );
   }
 }
-
-
 

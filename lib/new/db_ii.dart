@@ -1,26 +1,41 @@
-//ในไฟล์ db_helper.dart
+//ในไฟล์ db_ii.dart
 import 'package:sqflite/sqflite.dart' as sql;
 
 class SQLHelper {
   static Future<void> createTables(sql.Database database) async {
     await database.execute("""CREATE TABLE data (
-      id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-      title TEXT,
-      desc TEXT,
-      createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)""");
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  aa TEXT,
+  bb TEXT,
+  cc TEXT,
+  dd TEXT,
+  createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)""");
+
   }
 
   static Future<sql.Database> db() async {
-    return sql.openDatabase("database_name.db", version: 1,
+    return sql.openDatabase("database_name.db", version: 2,
         onCreate: (sql.Database database, int version) async {
       await createTables(database);
     });
   }
 
-  static Future<int> createData(String title, String? desc) async {
+  static Future<int> createData(
+    String aa, 
+    String bb,
+    String cc,
+    String? dd
+    
+    ) async {
     final db = await SQLHelper.db();
 
-    final data = {'title': title, 'desc': desc};
+    final data = {
+  'aa': aa, 
+  'bb': bb,
+  'cc': cc,
+  'dd': dd
+};
+
     final id = await db.insert('data', data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
 
@@ -34,14 +49,22 @@ class SQLHelper {
 
   static Future<List<Map<String, dynamic>>> getSingleData(int id) async {
     final db = await SQLHelper.db();
-    return db.query('data', where: "id = ?", whereArgs: [id], limit: 1);
+    return db.query('data', where: "id = ?", whereArgs: [id], limit: 2);
   }
 
-  static Future<int> updateData(int id, String title, String? desc) async {
+  static Future<int> updateData(
+    int id, 
+    String aa,
+    String bb, 
+    String cc,  
+    String? dd
+    ) async {
     final db = await SQLHelper.db();
     final data = {
-      'title': title,
-      'desc': desc,
+      'aa': aa,
+      'bb': bb,
+      'cc': cc,
+      'dd': dd,
       'createdAt': DateTime.now().toString()
     };
     final result =

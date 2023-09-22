@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 import 'b.dart';
 import 'data_provider.dart';
-import 'mysql.dart';
+//import 'mysql.dart';
 
 class TormTomatoPage extends StatefulWidget {
   @override
@@ -32,7 +32,8 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
     _daysController.dispose();
     super.dispose();
   }
-  var db = new Mysql();
+
+  // var db = new Mysql();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +59,7 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
               TextFormField(
                 controller: _dateTimeController,
                 onTap: () async {
-                  // Show a date picker and update the controller's text with the selected date
+                  // แสดงตัวเลือกวันที่และอัปเดตข้อความของตัวควบคุมด้วยวันที่ที่เลือก
                   DateTime? pickedDateTime = await showDatePicker(
                     context: context,
                     initialDate: DateTime.now(),
@@ -66,7 +67,7 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
                     lastDate: DateTime(2101),
                   );
                   if (pickedDateTime != null) {
-                    // Show a time picker and update the selected date's time
+                    // แสดงเครื่องมือเลือกเวลาและอัปเดตเวลาของวันที่ที่เลือก
                     TimeOfDay? pickedTime = await showTimePicker(
                       context: context,
                       initialTime: TimeOfDay.now(),
@@ -145,6 +146,7 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
                     // print('Amount Planted: ${_amountController.text}');
                     // print('Schools: ${_schoolsController.text}');
                     // print('Days of Planting: ${_daysController.text}');
+                    
                     // ดึงข้อมูลจาก TextControllers
                     final newDateTime = _dateTimeController.text;
                     final newCultivar = _cultivarController.text;
@@ -161,10 +163,21 @@ class _TormTomatoPageState extends State<TormTomatoPage> {
                       newDays: newDays,
                     );
                       // ส่งข้อมูลไปยังหน้า b.dart
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => b()),
-                    );
+                    Navigator.pushReplacement(
+  context,
+  MaterialPageRoute(
+    builder: (context) => b(),
+    settings: RouteSettings(
+      arguments: {
+        'newDateTime': newDateTime,
+        'newCultivar': newCultivar,
+        'newAmount': newAmount,
+        'newSchools': newSchools,
+        'newDays': newDays,
+      },
+    ),
+  ),
+);
 
                   }
                 },

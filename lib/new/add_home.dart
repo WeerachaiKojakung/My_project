@@ -1,3 +1,4 @@
+//ในไฟล์ add_home.dart
 import 'package:flutter/material.dart';
 import 'db_helper.dart';
 
@@ -11,8 +12,6 @@ class _AddHomeState extends State<AddHome> {
 
   bool _isLoading = true;
 
-
-
   // get all data
   void _refreshData() async {
     final data = await SQLHelper.getAllData();
@@ -25,51 +24,70 @@ class _AddHomeState extends State<AddHome> {
   @override
   void initState() {
     super.initState();
+    _titleController.text = "";
+    _descController.text = "";
+    _aaController.text = "";  // เพิ่ม _aaController.text
+    _bbController.text = "";  // เพิ่ม _bbController.text
+
     _refreshData();
   }
 
-// add data
+  // อัปเดตเมทอด _addData เพื่อรับค่า "aa" และ "bb" จากคอนโทรลเลอร์
   Future<void> _addData() async {
-    await SQLHelper.createData(_titleController.text, _descController.text);
-     setState(() {
-    _newTitleController.text = "";
-    _dateTimeController.text = "";
-  });
+    await SQLHelper.createData(
+      _titleController.text,
+      _descController.text,
+      // _aaController.text,  // เพิ่ม _aaController.text
+      // _bbController.text,  // เพิ่ม _bbController.text
+    );
     _refreshData();
-    
   }
 
-// update data
+  // อัปเดตเมทอด _updateData เพื่อรับค่า "aa" และ "bb" จากคอนโทรลเลอร์
   Future<void> _updateData(int id) async {
-    await SQLHelper.updateData(id, _titleController.text, _descController.text);
-     setState(() {
-    _newTitleController.text = "";
-    _dateTimeController.text = "";
-  });
+    await SQLHelper.updateData(
+      id,
+      _titleController.text,
+      _descController.text,
+      // _aaController.text,  // เพิ่ม _aaController.text
+      // _bbController.text,  // เพิ่ม _bbController.text
+    );
     _refreshData();
   }
+
 
 // delete data
-  void _deleteData(int id) async {
-    await SQLHelper.deleteData(id);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-      backgroundColor: Colors.redAccent,
-      content: Text("data"),
-    ));
-    _refreshData();
-  }
+void _deleteData(int id) async {
+  await SQLHelper.deleteData(id);
+  
+  final snackBar = SnackBar(
+    backgroundColor: Colors.redAccent,
+    content: Text(
+      "ลบข้อมูลเสร็จสิ้น",
+      style: TextStyle(
+        fontSize: 16, // ปรับขนาดตัวอักษรที่นี่
+        fontWeight: FontWeight.bold, // ปรับลักษณะตัวอักษรอื่น ๆ ที่นี่
+        color: Colors.white, // ปรับสีตัวอักษรที่นี่
+      ),
+    ),
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  _refreshData();
+}
    // Text controllers
-  //final TextEditingController _newTimeontroller = TextEditingController();
-  final TextEditingController _newTitleController = TextEditingController();
-  final TextEditingController _dateTimeController = TextEditingController();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
+  final TextEditingController _aaController = TextEditingController();  // เพิ่ม _aaController
+  final TextEditingController _bbController = TextEditingController();  // เพิ่ม _bbController
 
   void showBottomSheet(int? id) async {
     if (id != null) {
       final existingData = _allData.firstWhere((element) => element['id'] == id);
       _titleController.text = existingData['title'];
       _descController.text = existingData['desc'];
+      // _aaController.text = existingData['aa'];  // เพิ่ม _aaController.text
+      // _bbController.text = existingData['bb'];  // เพิ่ม _bbController.text
     }
 
     showModalBottomSheet(
@@ -90,7 +108,7 @@ class _AddHomeState extends State<AddHome> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             TextField(
-              controller: _titleController,
+              controller: _descController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "สายพันธุ์ต้นมะเขือเทศ",
@@ -98,7 +116,7 @@ class _AddHomeState extends State<AddHome> {
             ),
             SizedBox(height: 10),
             TextField(
-              controller: _descController,
+              controller: _aaController,
               maxLength: 4,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -108,16 +126,15 @@ class _AddHomeState extends State<AddHome> {
             SizedBox(height: 10),
             // เพิ่ม TextField สำหรับข้อมูลใหม่ที่นี่
             TextField(
-              controller: _newTitleController,
+              controller: _bbController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "โรงเรือนที่ปลูก",
               ),
             ),
             SizedBox(height: 10),
-            // เพิ่ม TextField สำหรับข้อมูลใหม่ที่นี่
             TextField(
-              controller: _dateTimeController,
+              controller: _titleController,
               onTap: () async {
                 DateTime? pickedDateTime = await showDatePicker(
                   context: context, 
@@ -140,7 +157,7 @@ class _AddHomeState extends State<AddHome> {
                       pickedTime.minute,
                       0,
                     );
-                    _dateTimeController.text = pickedDateTime.toString();
+                    _titleController.text = pickedDateTime.toString();
                   }
                 }
               },
@@ -163,7 +180,9 @@ class _AddHomeState extends State<AddHome> {
 
                   _titleController.text = "";
                   _descController.text = "";
-                  //_dateTimeController.text = "";
+                  _aaController.text = "";
+                  _bbController.text = "";
+                  //_dateController.text = "";
 
                   Navigator.of(context).pop();
                   print("Data Added: ");
@@ -202,7 +221,7 @@ class _AddHomeState extends State<AddHome> {
                   title: Padding(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     child: Text(
-                      'สายพันธุ์ต้นมะเขือเทศ: ${_allData[index]['title']}',
+                      'สายพันธุ์ต้นมะเขือเทศ: ${_allData[index]['desc']}',
 
                       // child: Text(
                       //   _allData[index]['title'],
@@ -211,9 +230,9 @@ class _AddHomeState extends State<AddHome> {
                       ),
                     ),
                   ),
-                  //subtitle: Text(_allData[index]['desc']),
-                  subtitle: Text(_dateTimeController.text.isNotEmpty
-                  ? _dateTimeController.text.substring(0, 16): ""), // แสดงค่าจาก _dateTimeController
+                  subtitle: Text(_allData[index]['title']),
+                  // subtitle: Text(_dateTimeController.text.isNotEmpty
+                  // ? _dateTimeController.text.substring(0, 16): ""), // แสดงค่าจาก _dateTimeController
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
