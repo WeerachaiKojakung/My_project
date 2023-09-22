@@ -37,8 +37,8 @@ class _AddHomeState extends State<AddHome> {
     await SQLHelper.createData(
       _titleController.text,
       _descController.text,
-      // _aaController.text,  // เพิ่ม _aaController.text
-      // _bbController.text,  // เพิ่ม _bbController.text
+      _aaController.text,  // เพิ่ม _aaController.text
+      _bbController.text,  // เพิ่ม _bbController.text
     );
     _refreshData();
   }
@@ -49,8 +49,8 @@ class _AddHomeState extends State<AddHome> {
       id,
       _titleController.text,
       _descController.text,
-      // _aaController.text,  // เพิ่ม _aaController.text
-      // _bbController.text,  // เพิ่ม _bbController.text
+      _aaController.text,  // เพิ่ม _aaController.text
+      _bbController.text,  // เพิ่ม _bbController.text
     );
     _refreshData();
   }
@@ -86,8 +86,8 @@ void _deleteData(int id) async {
       final existingData = _allData.firstWhere((element) => element['id'] == id);
       _titleController.text = existingData['title'];
       _descController.text = existingData['desc'];
-      // _aaController.text = existingData['aa'];  // เพิ่ม _aaController.text
-      // _bbController.text = existingData['bb'];  // เพิ่ม _bbController.text
+      _aaController.text = existingData['aa'];  // เพิ่ม _aaController.text
+      _bbController.text = existingData['bb'];  // เพิ่ม _bbController.text
     }
 
     showModalBottomSheet(
