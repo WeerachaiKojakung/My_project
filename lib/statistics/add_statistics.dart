@@ -1,7 +1,8 @@
 // import 'package:flutter/material.dart';
 // import 'package:my_app/statistics/form_tomato.dart';
- import 'package:my_app/statistics/form_medicine.dart';
- import 'package:my_app/new/add_home.dart';
+import 'package:my_app/new/add_medicine.dart';
+// import 'package:my_app/statistics/form_medicine.dart';
+import 'package:my_app/new/add_tomato.dart';
 //import 'package:my_app/statistics/b.dart';
 
 // class AddStatisticsPage extends StatelessWidget {
@@ -60,6 +61,7 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:my_app/new/kState.dart';
 
 class AddStatisticsPage extends StatefulWidget {
   const AddStatisticsPage({Key? key, required this.title}) : super(key: key);
@@ -78,7 +80,13 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
       initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('เพิ่มข้อมูลต้นมะเขือเทศและการให้ยา',style: TextStyle(color: Colors.black)),
+          title: const Text(
+            'เพิ่มข้อมูลต้นมะเขือเทศและการให้ยา',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 16.0,
+            ),
+          ),
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
@@ -98,7 +106,8 @@ class _AddStatisticsPageState extends State<AddStatisticsPage> {
                   child: Column(
                     children: [
                       Icon(Icons.add_to_photos_outlined),
-                      Text("เพิ่มข้อมูล", style: TextStyle(color: Colors.black)),
+                      Text("เพิ่มข้อมูล",
+                          style: TextStyle(color: Colors.black)),
                     ],
                   ),
                 ),
@@ -144,8 +153,7 @@ class PageToday extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      body:  ListView(
+      body: ListView(
         padding: EdgeInsets.zero,
         children: [
           Divider(),
@@ -156,8 +164,7 @@ class PageToday extends StatelessWidget {
               Navigator.push(
                 context,
                 //MaterialPageRoute(builder: (context) => TormTomatoPage()), // Replace with your actual constructor
-              MaterialPageRoute(builder: (context) => AddHome()),
-
+                MaterialPageRoute(builder: (context) => AddTomato()),
               );
             },
           ),
@@ -168,17 +175,17 @@ class PageToday extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DatePickerExample()),
+                MaterialPageRoute(builder: (context) => AddMedicine()),
               );
             },
           ),
           Divider(),
-          ListTile(
-            leading: Icon(Icons.add_box_outlined),
-            title: Text('เพิ่มข้อมูลการให้ปุ๋ย'),
-            onTap: () => null,
-          ),
-          Divider(),
+          // ListTile(
+          //   leading: Icon(Icons.add_box_outlined),
+          //   title: Text('เพิ่มข้อมูลการให้ปุ๋ย'),
+          //   onTap: () => null,
+          // ),
+          // Divider(),
         ],
       ),
     );
@@ -189,38 +196,44 @@ class PageHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-            
-      body:  ListView(
+      body: ListView(
         padding: EdgeInsets.zero,
         children: [
           Divider(),
           ListTile(
-            leading: Icon(Icons.content_paste_go ),
+            leading: Icon(Icons.content_paste_go),
             title: Text('ข้อมูลต้นมะเขือเทศ'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddHome()), // Replace with your actual constructor
+                MaterialPageRoute(
+                    builder: (context) =>
+                        AddTomato()), // Replace with your actual constructor
                 //MaterialPageRoute(builder: (context) => b()),
               );
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.content_paste_go ),
+            leading: Icon(Icons.content_paste_go),
             title: Text('ข้อมูลการให้ยา'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => DatePickerExample()),
+                MaterialPageRoute(builder: (context) => AddMedicine()),
               );
             },
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.content_paste_go ),
+            leading: Icon(Icons.content_paste_go),
             title: Text('ข้อมูลการให้ปุ๋ย'),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => kState()),
+              );
+            },
           ),
           Divider(),
         ],
@@ -237,4 +250,3 @@ class ScreenPage3 extends StatelessWidget {
     );
   }
 }
-

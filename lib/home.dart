@@ -10,11 +10,11 @@ import 'package:my_app/statistics/add_statistics.dart';
 import 'package:my_app/species/speciesAll.dart'; // Import the speciesAll.dart file
 import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dart file
 
-//String SERVER = 'http://10.0.2.2'; //emulator
-//String SERVER = "http://192.168.123.101";
+String ARDUINO = "http://192.168.123.99"; //ESP32 - IP Address
+String SERVER = 'http://10.0.2.2'; //emulator
+// String SERVER = "http://192.168.123.102";
 //String SERVER = "http://192.168.1.12";
-String SERVER = "http://10.50.10.26";
-
+// String SERVER = "http://10.50.10.26";
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         //automaticallyImplyLeading: false,
         title: const Text(
-          'Smart TreeBox',
+          'TOMATO',
           style: TextStyle(color: Colors.black),
         ),
         actions: [
@@ -66,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AddStatisticsPage(title: "")),
+                MaterialPageRoute(
+                    builder: (context) => AddStatisticsPage(title: "")),
                 //MaterialPageRoute(builder: (context) => AddHome()),
               );
             },
@@ -97,68 +98,68 @@ class _HomeScreenState extends State<HomeScreen> {
         //child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20.0),
-            Center(
-              child: Container(
-                color: Colors.white, // Set the background color to white
-                padding: EdgeInsets.all(16.0), // Add padding for spacing
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'ค่าล่าสุด',
-                      style: TextStyle(
-                        fontSize: 22.0,
-                      ),
-                    ),
-                    FutureBuilder(
-                      future: Dio().get('$SERVER/tomato/getDisease.php'),
-                      builder: (context, AsyncSnapshot<Response> snapshot) {
-                        if (snapshot.hasData) {
-                          final res = snapshot
-                              .data; // return the value, it must be JSON only
-                          if (res!.data.toString().isEmpty) {
-                            return Text('Val Err!!');
-                          } else {
-                            final json = jsonDecode(res.data);
-                            log('json:$json');
-                            return Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('disease_id = ${json[0]['disease_id']}'),
-                                Text('disease_dt = ${json[0]['disease_dt']}'),
-                                Text('disease_pic = ${json[0]['disease_pic']}'),
-                                Text(
-                                    'disease_ret1 = ${json[0]['disease_ret1']}'),
-                                Text(
-                                    'disease_ret2 = ${json[0]['disease_ret2']}'),
-                                Text(
-                                    'disease_ret3 = ${json[0]['disease_ret3']}'),
-                                json[0]['disease_pic'].toString().isNotEmpty
-                                    ? Center(
-                                        child: Image.network(
-                                          '$SERVER/tomato/images/${json[0]['disease_pic']}',
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.9,
-                                        ),
-                                      )
-                                    : SizedBox(),
-                              ],
-                            );
-                          }
-                        } else if (snapshot.hasError) {
-                          return Text('Error!! ${snapshot.error}');
-                        } else {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // const SizedBox(height: 20.0),
+            // Center(
+            //   child: Container(
+            //     color: Colors.white, // Set the background color to white
+            //     padding: EdgeInsets.all(16.0), // Add padding for spacing
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.start,
+            //       children: [
+            //         Text(
+            //           'ค่าล่าสุด',
+            //           style: TextStyle(
+            //             fontSize: 22.0,
+            //           ),
+            //         ),
+            //         FutureBuilder(
+            //           future: Dio().get('$SERVER/tomato/getDisease.php'),
+            //           builder: (context, AsyncSnapshot<Response> snapshot) {
+            //             if (snapshot.hasData) {
+            //               final res = snapshot
+            //                   .data; // return the value, it must be JSON only
+            //               if (res!.data.toString().isEmpty) {
+            //                 return Text('Val Err!!');
+            //               } else {
+            //                 final json = jsonDecode(res.data);
+            //                 log('json:$json');
+            //                 return Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Text('disease_id = ${json[0]['disease_id']}'),
+            //                     Text('disease_dt = ${json[0]['disease_dt']}'),
+            //                     Text('disease_pic = ${json[0]['disease_pic']}'),
+            //                     Text(
+            //                         'disease_ret1 = ${json[0]['disease_ret1']}'),
+            //                     Text(
+            //                         'disease_ret2 = ${json[0]['disease_ret2']}'),
+            //                     Text(
+            //                         'disease_ret3 = ${json[0]['disease_ret3']}'),
+            //                     json[0]['disease_pic'].toString().isNotEmpty
+            //                         ? Center(
+            //                             child: Image.network(
+            //                               '$SERVER/tomato/images/${json[0]['disease_pic']}',
+            //                               width: MediaQuery.of(context)
+            //                                       .size
+            //                                       .width *
+            //                                   0.9,
+            //                             ),
+            //                           )
+            //                         : SizedBox(),
+            //                   ],
+            //                 );
+            //               }
+            //             } else if (snapshot.hasError) {
+            //               return Text('Error!! ${snapshot.error}');
+            //             } else {
+            //               return Center(child: CircularProgressIndicator());
+            //             }
+            //           },
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
 
             // Padding(
             //   padding: EdgeInsets.symmetric(vertical: 10),
@@ -324,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.7),
                   fontFamily: 'Montserrat',
-                  fontSize: 20,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -452,375 +453,485 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            
-Container(
-  padding: EdgeInsets.all(8),
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(15),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.1),
-        spreadRadius: 3,
-        blurRadius: 10,
-        offset: Offset(0, 3),
-      ),
-    ],
-  ),
-  child: FutureBuilder(
-    future: Dio().get('$SERVER/tomato/getLogging.php'),
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator());
-      } else if (snapshot.hasData) {
-        final res = snapshot.data;
-        if (res!.data.toString().isEmpty) {
-          return Text('Val Err!!');
-        } else {
-          final json = jsonDecode(res.data);
-          return Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  "assets/images/t_1.jpg",
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Text(
-                  "เซนเซอร์ความเข้มแสง",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  color: Colors.black12,
-                  width: 80,
-                  height: 80,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${json[0]['log_val1']}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
-                          ),
-                        ),
-                        Text(
-                          "aaa",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          );
-        }
-      } else if (snapshot.hasError) {
-        return Text('Error!! ${snapshot.error}');
-      } else {
-        return Center(child: CircularProgressIndicator());
-      }
-    },
-  ),
-),
 
-Container(
-  padding: EdgeInsets.all(8),
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(15),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.1),
-        spreadRadius: 3,
-        blurRadius: 10,
-        offset: Offset(0, 3),
-      ),
-    ],
-  ),
-  child: FutureBuilder(
-    future: Dio().get('$SERVER/tomato/getLogging.php'),
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator());
-      } else if (snapshot.hasData) {
-        final res = snapshot.data;
-        if (res!.data.toString().isEmpty) {
-          return Text('Val Err!!');
-        } else {
-          final json = jsonDecode(res.data);
-          return Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  "assets/images/t_1.jpg",
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Text(
-                  "เซนเซอร์วัดอุณหภูมิ",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
                   ),
-                ),
+                ],
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  color: Colors.black12,
-                  width: 80,
-                  height: 80,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${json[0]['log_val2']}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
+              child: FutureBuilder(
+                future: Dio().get('$SERVER/tomato/getLogging.php'),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasData) {
+                    final res = snapshot.data;
+                    if (res!.data.toString().isEmpty) {
+                      return Text('Val Err!!');
+                    } else {
+                      final json = jsonDecode(res.data);
+                      return Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/t_1.jpg",
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "aaa",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                          const SizedBox(
+                            width: 20,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                          Expanded(
+                            child: Text(
+                              "เซนเซอร์ความเข้มแสง",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              color: Colors.black12,
+                              width: 80,
+                              height: 80,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${json[0]['log_val1']}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    Text(
+                                      "aaa",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  } else if (snapshot.hasError) {
+                    return Text('Error!! ${snapshot.error}');
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
-            ],
-          );
-        }
-      } else if (snapshot.hasError) {
-        return Text('Error!! ${snapshot.error}');
-      } else {
-        return Center(child: CircularProgressIndicator());
-      }
-    },
-  ),
-),
+            ),
 
-Container(
-  padding: EdgeInsets.all(8),
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(15),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.1),
-        spreadRadius: 3,
-        blurRadius: 10,
-        offset: Offset(0, 3),
-      ),
-    ],
-  ),
-  child: FutureBuilder(
-    future: Dio().get('$SERVER/tomato/getLogging.php'),
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator());
-      } else if (snapshot.hasData) {
-        final res = snapshot.data;
-        if (res!.data.toString().isEmpty) {
-          return Text('Val Err!!');
-        } else {
-          final json = jsonDecode(res.data);
-          return Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  "assets/images/t_1.jpg",
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Text(
-                  "เซนเซอร์วัดความชื้นในดิน",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
                   ),
-                ),
+                ],
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  color: Colors.black12,
-                  width: 80,
-                  height: 80,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${json[0]['log_val3']}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
+              child: FutureBuilder(
+                future: Dio().get('$SERVER/tomato/getLogging.php'),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasData) {
+                    final res = snapshot.data;
+                    if (res!.data.toString().isEmpty) {
+                      return Text('Val Err!!');
+                    } else {
+                      final json = jsonDecode(res.data);
+                      return Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/t_1.jpg",
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "aaa",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                          const SizedBox(
+                            width: 20,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                          Expanded(
+                            child: Text(
+                              "เซนเซอร์วัดอุณหภูมิ",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              color: Colors.black12,
+                              width: 80,
+                              height: 80,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${json[0]['log_val2']}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    Text(
+                                      "aaa",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  } else if (snapshot.hasError) {
+                    return Text('Error!! ${snapshot.error}');
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
-            ],
-          );
-        }
-      } else if (snapshot.hasError) {
-        return Text('Error!! ${snapshot.error}');
-      } else {
-        return Center(child: CircularProgressIndicator());
-      }
-    },
-  ),
-),
+            ),
 
-Container(
-  padding: EdgeInsets.all(8),
-  decoration: BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(15),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.1),
-        spreadRadius: 3,
-        blurRadius: 10,
-        offset: Offset(0, 3),
-      ),
-    ],
-  ),
-  child: FutureBuilder(
-    future: Dio().get('$SERVER/tomato/getLogging.php'),
-    builder: (context, snapshot) {
-      if (snapshot.connectionState == ConnectionState.waiting) {
-        return Center(child: CircularProgressIndicator());
-      } else if (snapshot.hasData) {
-        final res = snapshot.data;
-        if (res!.data.toString().isEmpty) {
-          return Text('Val Err!!');
-        } else {
-          final json = jsonDecode(res.data);
-          return Row(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Image.asset(
-                  "assets/images/t_1.jpg",
-                  width: 80,
-                  height: 80,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: Text(
-                  "เซนเซอร์ความเข้มแสง",
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
                   ),
-                ),
+                ],
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  color: Colors.black12,
-                  width: 80,
-                  height: 80,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "${json[0]['log_val4']}",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black54,
+              child: FutureBuilder(
+                future: Dio().get('$SERVER/tomato/getLogging.php'),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasData) {
+                    final res = snapshot.data;
+                    if (res!.data.toString().isEmpty) {
+                      return Text('Val Err!!');
+                    } else {
+                      final json = jsonDecode(res.data);
+                      return Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/t_1.jpg",
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                        ),
-                        Text(
-                          "aaa",
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                          const SizedBox(
+                            width: 20,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                          Expanded(
+                            child: Text(
+                              "เซนเซอร์วัดความชื้นในดิน",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              color: Colors.black12,
+                              width: 80,
+                              height: 80,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${json[0]['log_val3']}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    Text(
+                                      "aaa",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  } else if (snapshot.hasError) {
+                    return Text('Error!! ${snapshot.error}');
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
-            ],
-          );
-        }
-      } else if (snapshot.hasError) {
-        return Text('Error!! ${snapshot.error}');
-      } else {
-        return Center(child: CircularProgressIndicator());
-      }
-    },
-  ),
-),
+            ),
 
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: FutureBuilder(
+                future: Dio().get('$SERVER/tomato/getLogging.php'),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasData) {
+                    final res = snapshot.data;
+                    if (res!.data.toString().isEmpty) {
+                      return Text('Val Err!!');
+                    } else {
+                      final json = jsonDecode(res.data);
+                      return Row(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              "assets/images/t_1.jpg",
+                              width: 80,
+                              height: 80,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Expanded(
+                            child: Text(
+                              "เซนเซอร์ความเข้มแสง",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                              ),
+                            ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Container(
+                              color: Colors.black12,
+                              width: 80,
+                              height: 80,
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "${json[0]['log_val4']}",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                    Text(
+                                      "aaa",
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                  } else if (snapshot.hasError) {
+                    return Text('Error!! ${snapshot.error}');
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ),
+
+            //ส่งคำสั่ง
+            const SizedBox(height: 20.0),
+            Text(
+              'ส่งคำสั่ง',
+              style: TextStyle(
+                fontSize: 22.0,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.1),
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Dio().get('$ARDUINO/led/on');
+                        },
+                        child: Text('เปิด LED'),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          backgroundColor: Colors.green,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Dio().get('$ARDUINO/led/off');
+                        },
+                        child: Text('ปิด LED'),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          backgroundColor: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Dio().get('$ARDUINO/med1/on');
+                        },
+                        child: Text('เปิดพ่นยา #1'),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          backgroundColor: Colors.green,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Dio().get('$ARDUINO/med1/off');
+                        },
+                        child: Text('ปิดพ่นยา #1'),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          backgroundColor: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Dio().get('$ARDUINO/med2/on');
+                        },
+                        child: Text('เปิดพ่นยา #2'),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          backgroundColor: Colors.green,
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Dio().get('$ARDUINO/med2/off');
+                        },
+                        child: Text('ปิดพ่นยา #2'),
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 30.0, vertical: 15.0),
+                          backgroundColor: Colors.red,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -891,4 +1002,3 @@ Container(
         ),
       );
 }
-

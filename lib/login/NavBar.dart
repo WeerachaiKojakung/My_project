@@ -45,11 +45,11 @@ class NavBar extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.share),
-            title: Text('Share'),
-            onTap: () => null,
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.share),
+          //   title: Text('Share'),
+          //   onTap: () => null,
+          // ),
           ListTile(
             leading: Icon(Icons.notifications),
             title: Text('Request'),
@@ -75,12 +75,12 @@ class NavBar extends StatelessWidget {
               ),
             ),
           ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
-            onTap: () => null,
-          ),
+          // Divider(),
+          // ListTile(
+          //   leading: Icon(Icons.settings),
+          //   title: Text('Settings'),
+          //   onTap: () => null,
+          // ),
           Divider(),
           ListTile(
             title: Text('Exit'),
