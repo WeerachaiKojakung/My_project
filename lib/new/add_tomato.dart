@@ -1,15 +1,15 @@
-//ในไฟล์ add_home.dart
+//ในไฟล์ add_tomato.dart
 import 'package:flutter/material.dart';
 import 'db_helper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class AddHome extends StatefulWidget {
+class AddTomato extends StatefulWidget {
   @override
-  State<AddHome> createState() => _AddHomeState();
+  State<AddTomato> createState() => _AddTomatoState();
 }
 
-class _AddHomeState extends State<AddHome> {
+class _AddTomatoState extends State<AddTomato> {
   List<Map<String, dynamic>> _allData = [];
   File? _imageFile;
   ImagePicker image = ImagePicker();
