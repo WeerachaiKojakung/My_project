@@ -12,6 +12,7 @@ class SQLHelper {
         desc TEXT,
         aa TEXT,
         bb TEXT,
+        cc TEXT,
         createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
       )
     ''');
@@ -21,13 +22,14 @@ class SQLHelper {
       desc TEXT,
       aa TEXT,
       bb TEXT,
+      cc TEXT,
       createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP)""");
   }
 
   static Future<sql.Database> db() async {
     return sql.openDatabase(
       "database_name.db",
-      version: 4, // เพิ่มเวอร์ชันของฐานข้อมูล
+      version: 5, // เพิ่มเวอร์ชันของฐานข้อมูล
       onCreate: (sql.Database database, int version) async {
         await createTables(database);
       },
@@ -41,7 +43,8 @@ class SQLHelper {
       String? desc, // พารามิเตอร์ที่เป็นตัวเลือก
       String? aa, // พารามิเตอร์ที่เป็นตัวเลือก
       String? bb, // พารามิเตอร์ที่เป็นตัวเลือก
-      {String? imageUrl, String tableName = 'data'}) async {
+      String? cc,
+      {String tableName = 'data'}) async {
     final db = await SQLHelper.db();
 
     final data = {
@@ -49,7 +52,7 @@ class SQLHelper {
       'desc': desc,
       'aa': aa, // รวม 'aa' ในฟิลด์
       'bb': bb, // รวม 'bb' ในฟิลด์
-      'imageUrl': imageUrl, // เพิ่ม imageUrl
+      'cc': cc,
     };
     final id = await db.insert(tableName, data,
         conflictAlgorithm: sql.ConflictAlgorithm.replace);
@@ -75,14 +78,15 @@ class SQLHelper {
       String? desc, // พารามิเตอร์ที่เป็นตัวเลือก
       String? aa, // พารามิเตอร์ที่เป็นตัวเลือก
       String? bb, // พารามิเตอร์ที่เป็นตัวเลือก
-      {String? imageUrl, String tableName = 'data'}) async {
+      String? cc, // 
+      {String tableName = 'data'}) async {
     final db = await SQLHelper.db();
     final data = {
       'title': title,
       'desc': desc,
       'aa': aa, // รวม 'aa' ในฟิลด์
       'bb': bb, // รวม 'bb' ในฟิลด์
-      'imageUrl': imageUrl, // เพิ่ม imageUrl
+      'cc': cc, // 
       'createdAt': DateTime.now().toString()
     };
     final result =

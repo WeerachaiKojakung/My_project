@@ -1,37 +1,39 @@
+//ในไฟล์ kState.dart
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 void main() {
-  runApp(k());
-}
-
-class k extends StatefulWidget {
-  @override
-  _kState createState() => _kState();
-}
-
-class _kState extends State<k> {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: kState(),
-    );
-  }
+  runApp(kState());
 }
 
 class kState extends StatefulWidget {
   @override
-  _kStateState createState() => _kStateState();
+  _kState createState() => _kState();
 }
 
-class _kStateState extends State<kState> {
+class _kState extends State<kState> {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyApp(),
+    );
+  }
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   File? file;
   ImagePicker image = ImagePicker();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffeceaf4),
       appBar: AppBar(
         title: Text("WebFun"),
       ),
@@ -64,18 +66,18 @@ class _kStateState extends State<kState> {
                 ),
               ),
             ),
-            // MaterialButton(
-            //   onPressed: () {
-            //     getcam();
-            //   },
-            //   color: Colors.blue[900],
-            //   child: Text(
-            //     "take from camera",
-            //     style: TextStyle(
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            // ),
+            MaterialButton(
+              onPressed: () {
+                getcam();
+              },
+              color: Colors.blue[900],
+              child: Text(
+                "take from camera",
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),

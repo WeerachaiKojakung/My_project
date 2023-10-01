@@ -11,10 +11,10 @@ import 'package:my_app/species/speciesAll.dart'; // Import the speciesAll.dart f
 import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dart file
 
 String ARDUINO = "http://192.168.123.99"; //ESP32 - IP Address
-String SERVER = 'http://10.0.2.2'; //emulator
+//String SERVER = 'http://10.0.2.2'; //emulator
 // String SERVER = "http://192.168.123.102";
-//String SERVER = "http://192.168.1.12";
-// String SERVER = "http://10.50.10.26";
+String SERVER = "http://192.168.1.12"; //หอ
+// String SERVER = "http://10.50.10.26"; //มอ
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -484,7 +484,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.asset(
-                              "assets/images/t_1.jpg",
+                              "assets/images/Photoresistor.jpg",
                               width: 80,
                               height: 80,
                               fit: BoxFit.cover,
@@ -576,7 +576,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.asset(
-                              "assets/images/t_1.jpg",
+                              "assets/images/Dht11.jpg",
                               width: 80,
                               height: 80,
                               fit: BoxFit.cover,
@@ -668,7 +668,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ClipRRect(
                             borderRadius: BorderRadius.circular(20),
                             child: Image.asset(
-                              "assets/images/t_1.jpg",
+                              "assets/images/Soil.jpg",
                               width: 80,
                               height: 80,
                               fit: BoxFit.cover,

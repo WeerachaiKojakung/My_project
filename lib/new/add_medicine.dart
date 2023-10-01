@@ -41,6 +41,7 @@ class _AddMedicineState extends State<AddMedicine> {
       _descController.text,
       _aaController.text, // เพิ่ม _aaController.text
       _bbController.text, // เพิ่ม _bbController.text
+      _ccController.text,
       tableName: 'medicine',
     );
     _refreshData();
@@ -54,6 +55,7 @@ class _AddMedicineState extends State<AddMedicine> {
       _descController.text,
       _aaController.text, // เพิ่ม _aaController.text
       _bbController.text, // เพิ่ม _bbController.text
+      _ccController.text,
       tableName: 'medicine',
     );
     _refreshData();
@@ -84,6 +86,7 @@ class _AddMedicineState extends State<AddMedicine> {
   final TextEditingController _descController = TextEditingController();
   final TextEditingController _aaController = TextEditingController(); // เพิ่ม _aaController
   final TextEditingController _bbController = TextEditingController(); // เพิ่ม _bbController
+  final TextEditingController _ccController = TextEditingController();
 
   void showBottomSheet(int? id) async {
     if (id != null) {
@@ -93,6 +96,7 @@ class _AddMedicineState extends State<AddMedicine> {
       _descController.text = existingData['desc'];
       _aaController.text = existingData['aa']; // เพิ่ม _aaController.text
       _bbController.text = existingData['bb']; // เพิ่ม _bbController.text
+      _ccController.text = existingData['cc']; 
     }
 
     showModalBottomSheet(
@@ -122,7 +126,9 @@ class _AddMedicineState extends State<AddMedicine> {
             ),
             SizedBox(height: 10),
             DropdownButtonFormField<String>(
+              
               value: selectedDiseaseGroup,
+              //controller: _aaController,
               items: diseaseGroups.map((group) {
                 return DropdownMenuItem<String>(
                   value: group,

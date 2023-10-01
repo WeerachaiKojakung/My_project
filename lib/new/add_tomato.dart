@@ -11,8 +11,10 @@ class AddTomato extends StatefulWidget {
 
 class _AddTomatoState extends State<AddTomato> {
   List<Map<String, dynamic>> _allData = [];
-  File? _imageFile;
+
+  File? file;
   ImagePicker image = ImagePicker();
+
   bool _isLoading = true;
 
   // get all data
@@ -25,16 +27,16 @@ class _AddTomatoState extends State<AddTomato> {
   }
 
   @override
-   void initState() {
+  void initState() {
     super.initState();
     _titleController.text = "";
     _descController.text = "";
     _aaController.text = ""; // เพิ่ม _aaController.text
     _bbController.text = ""; // เพิ่ม _bbController.text
+    _ccController.text = "";
 
     _refreshData();
   }
-
 
   // อัปเดตเมทอด _addData เพื่อรับค่า "aa" และ "bb" จากคอนโทรลเลอร์
   Future<void> _addData() async {
@@ -43,7 +45,7 @@ class _AddTomatoState extends State<AddTomato> {
       _descController.text,
       _aaController.text, // เพิ่ม _aaController.text
       _bbController.text, // เพิ่ม _bbController.text
-      imageUrl: _imageFile != null ? _imageFile!.path : null,
+      _ccController.text,
     );
     _refreshData();
   }
@@ -56,7 +58,7 @@ class _AddTomatoState extends State<AddTomato> {
       _descController.text,
       _aaController.text, // เพิ่ม _aaController.text
       _bbController.text, // เพิ่ม _bbController.text
-      imageUrl: _imageFile != null ? _imageFile!.path : null,
+      _ccController.text,
     );
     _refreshData();
   }
@@ -81,44 +83,33 @@ class _AddTomatoState extends State<AddTomato> {
     _refreshData();
   }
 
-
-    void getgall() async {
-      var img = await image.pickImage(source: ImageSource.gallery);
-      setState(() {
-        _imageFile = File(img!.path);
-      });
-    }
-
-    void getcam() async {
-          // ignore: deprecated_member_use
-          var img = await image.pickImage(source: ImageSource.camera);
-          setState(() {
-            _imageFile = File(img!.path);
-          });
-        }
-
   // Text controllers
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descController = TextEditingController();
-  final TextEditingController _aaController = TextEditingController(); // เพิ่ม _aaController
-  final TextEditingController _bbController = TextEditingController(); // เพิ่ม _bbController
+  final TextEditingController _aaController =
+      TextEditingController(); // เพิ่ม _aaController
+  final TextEditingController _bbController =
+      TextEditingController(); // เพิ่ม _bbController
+  final TextEditingController _ccController = TextEditingController();
 
   void showBottomSheet(int? id) async {
     if (id != null) {
       final existingData =
-      _allData.firstWhere((element) => element['id'] == id);
+          _allData.firstWhere((element) => element['id'] == id);
       _titleController.text = existingData['title'];
       _descController.text = existingData['desc'];
       _aaController.text = existingData['aa']; // เพิ่ม _aaController.text
       _bbController.text = existingData['bb']; // เพิ่ม _bbController.text
+      _ccController.text = existingData['cc'];
     }
 
     showModalBottomSheet(
       elevation: 5,
       isScrollControlled: true,
       context: context,
-      builder: (_) => Container(
+      builder: (_) => SingleChildScrollView(
         padding: EdgeInsets.only(
+          
           top: 30,
           left: 15,
           right: 15,
@@ -135,18 +126,32 @@ class _AddTomatoState extends State<AddTomato> {
             Align(
               alignment: Alignment.center,
               child: Container(
-                height: 140,
-                width: 180,
+                height: 180, // ปรับขนาดสูงของ Container
+                width: 180, // ปรับขนาดความกว้างของ Container
                 color: Colors.black12,
-                child: _imageFile == null
-                  ? Icon(
-                      Icons.image,
-                      size: 50,
-                    )
-                  : Image.file(
-                      _imageFile!,
-                      fit: BoxFit.fill,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    file == null
+                        ? Icon(
+                            Icons.image,
+                            size: 50,
+                          )
+                        : Image.file(
+                            file!,
+                            fit: BoxFit.fill,
+                          ),
+                    SizedBox(height: 10), // เพิ่มระยะห่าง
+                    Text(
+                      _ccController
+                          .text, // ใช้ _ccController.text ที่คุณต้องการแสดง
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
+                  ],
+                ),
               ),
             ),
 
@@ -165,7 +170,6 @@ class _AddTomatoState extends State<AddTomato> {
                 ),
               ),
             ),
-
             // Align(
             //   alignment: Alignment.center,
             //   child: MaterialButton(
@@ -312,9 +316,6 @@ class _AddTomatoState extends State<AddTomato> {
                       ),
                     ),
                   ),
-                   leading: _allData[index]['imageUrl'] != null
-                      ? Image.network(_allData[index]['imageUrl']) // แสดงรูปภาพจาก URL
-                      : null,
 
                   //subtitle: Text(_allData[index]['title']),
                   subtitle: Column(
@@ -357,5 +358,13 @@ class _AddTomatoState extends State<AddTomato> {
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  getgall() async {
+    // ignore: deprecated_member_use
+    var img = await image.getImage(source: ImageSource.gallery);
+    setState(() {
+      file = File(img!.path);
+    });
   }
 }
