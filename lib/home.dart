@@ -10,10 +10,11 @@ import 'package:my_app/statistics/add_statistics.dart';
 import 'package:my_app/species/speciesAll.dart'; // Import the speciesAll.dart file
 import 'package:my_app/diseases/diseasesAll.dart'; // Import the diseasesAll.dart file
 
-String ARDUINO = "http://192.168.123.99"; //ESP32 - IP Address
+
+String ARDUINO = "http://172.20.10.3"; //ESP32 - IP Address
 //String SERVER = 'http://10.0.2.2'; //emulator
-// String SERVER = "http://192.168.123.102";
-String SERVER = "http://192.168.1.12"; //หอ
+String SERVER = "http://172.20.10.5"; // hostport
+// String SERVER = "http://192.168.1.12"; //หอ
 // String SERVER = "http://10.50.10.26"; //มอ
 
 void main() {
@@ -98,224 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
         //child: SingleChildScrollView(
         child: Column(
           children: [
-            // const SizedBox(height: 20.0),
-            // Center(
-            //   child: Container(
-            //     color: Colors.white, // Set the background color to white
-            //     padding: EdgeInsets.all(16.0), // Add padding for spacing
-            //     child: Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: [
-            //         Text(
-            //           'ค่าล่าสุด',
-            //           style: TextStyle(
-            //             fontSize: 22.0,
-            //           ),
-            //         ),
-            //         FutureBuilder(
-            //           future: Dio().get('$SERVER/tomato/getDisease.php'),
-            //           builder: (context, AsyncSnapshot<Response> snapshot) {
-            //             if (snapshot.hasData) {
-            //               final res = snapshot
-            //                   .data; // return the value, it must be JSON only
-            //               if (res!.data.toString().isEmpty) {
-            //                 return Text('Val Err!!');
-            //               } else {
-            //                 final json = jsonDecode(res.data);
-            //                 log('json:$json');
-            //                 return Column(
-            //                   crossAxisAlignment: CrossAxisAlignment.start,
-            //                   children: [
-            //                     Text('disease_id = ${json[0]['disease_id']}'),
-            //                     Text('disease_dt = ${json[0]['disease_dt']}'),
-            //                     Text('disease_pic = ${json[0]['disease_pic']}'),
-            //                     Text(
-            //                         'disease_ret1 = ${json[0]['disease_ret1']}'),
-            //                     Text(
-            //                         'disease_ret2 = ${json[0]['disease_ret2']}'),
-            //                     Text(
-            //                         'disease_ret3 = ${json[0]['disease_ret3']}'),
-            //                     json[0]['disease_pic'].toString().isNotEmpty
-            //                         ? Center(
-            //                             child: Image.network(
-            //                               '$SERVER/tomato/images/${json[0]['disease_pic']}',
-            //                               width: MediaQuery.of(context)
-            //                                       .size
-            //                                       .width *
-            //                                   0.9,
-            //                             ),
-            //                           )
-            //                         : SizedBox(),
-            //                   ],
-            //                 );
-            //               }
-            //             } else if (snapshot.hasError) {
-            //               return Text('Error!! ${snapshot.error}');
-            //             } else {
-            //               return Center(child: CircularProgressIndicator());
-            //             }
-            //           },
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
-            // Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 10),
-            //   child: Container(
-            //     height: 170,
-            //     width: double.infinity,
-            //     decoration: BoxDecoration(
-            //       color: Colors.white,
-            //       borderRadius: BorderRadius.circular(15),
-            //       boxShadow: [
-            //         BoxShadow(
-            //           color: Colors.grey.withOpacity(0.5),
-            //           spreadRadius: 3,
-            //           blurRadius: 10,
-            //           offset: Offset(0, 3),
-            //         ),
-            //       ],
-            //     ),
-            //     child: Row(
-            //       children: [
-            //         Text(
-            //   'ค่าล่าสุด',
-            //   style: TextStyle(
-            //     fontSize: 22.0,
-            //   ),
-            // ),
-            // FutureBuilder(
-            //   future: Dio().get('$SERVER/tomato/getDisease.php'),
-            //   builder: (context, AsyncSnapshot<Response> snapshot) {
-            //     if (snapshot.hasData) {
-            //       final res = snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
-            //       if (res!.data.toString().isEmpty) {
-            //         return Text('Val Err!!');
-            //       } else {
-            //         final json = jsonDecode(res.data);
-            //         log('json:$json');
-            //         return Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text('disease_id = ${json[0]['disease_id']}'),
-            //             Text('disease_dt = ${json[0]['disease_dt']}'),
-            //             Text('disease_pic = ${json[0]['disease_pic']}'),
-            //             Text('disease_ret1 = ${json[0]['disease_ret1']}'),
-            //             Text('disease_ret2 = ${json[0]['disease_ret2']}'),
-            //             Text('disease_ret3 = ${json[0]['disease_ret3']}'),
-            //             json[0]['disease_pic'].toString().isNotEmpty
-            //                 ? Center(
-            //                     child: Image.network(
-            //                       '$SERVER/tomato/images/${json[0]['disease_pic']}',
-            //                       width:
-            //                           MediaQuery.of(context).size.width * 0.9,
-            //                     ),
-            //                   )
-            //                 : SizedBox(),
-            //           ],
-            //         );
-            //       }
-            //     } else if (snapshot.hasError) {
-            //       return Text('Error!! ${snapshot.error}');
-            //     } else {
-            //       return Center(child: CircularProgressIndicator());
-            //     }
-            //   },
-            // ),
-            // InkWell(
-            //   onTap: () {},
-            //   child: Container(
-            //     height: 120,
-            //     width: 150,
-            //     alignment: Alignment.center,
-            //     decoration: BoxDecoration(
-            //       borderRadius: BorderRadius.circular(20),
-            //       boxShadow: [
-            //         BoxShadow(
-            //           color: Colors.grey.withOpacity(0.5),
-            //           spreadRadius: 3,
-            //           blurRadius: 10,
-            //           offset: Offset(0, 0),
-            //         ),
-            //       ],
-            //     ),
-            //     child: FutureBuilder<Response>(
-            //       future : Dio().get('$SERVER/tomato/getDisease.php'),
-            //       builder: (BuildContext context,
-            //           AsyncSnapshot<Response> snapshot) {
-            //         if (snapshot.connectionState ==
-            //             ConnectionState.waiting) {
-            //           return Center(child: CircularProgressIndicator());
-            //         } else if (snapshot.hasError) {
-            //           // return Text('Error!! ${snapshot.error}');
-            //           print('Error!! ${snapshot.error}');
-            //         return Text('Error fetching data.');
-            //         } else if (snapshot.hasData) {
-            //           var res = snapshot.data!.data;
-            //           var json = jsonDecode(res);
-            //           var imageUrl = json[0]['disease_pic'].toString();
-            //           return imageUrl.isNotEmpty
-            //               ? Center(
-            //                   child: Image.network(
-            //                     '$SERVER/tomato/images/$imageUrl',
-            //                     width:
-            //                         MediaQuery.of(context).size.width *
-            //                             0.9,fit: BoxFit.cover,
-            //                   ),
-            //                 )
-            //               : SizedBox();
-            //         } else {
-            //           return Text('No Data');
-            //         }
-            //       },
-            //     ),
-
-            //     // child: Image.asset(
-            //     //   "assets/images/t_1.jpg",
-            //     //   width: 120,
-            //     //   height: 150,
-            //     //   fit: BoxFit.cover,
-            //     // ),
-            //     // ),
-            //   ),
-            // ),
-            // SizedBox(
-            //   width: 70,
-            // ),
-            // Container(
-            //   height: 60,
-            //   width: 125,
-            //   decoration: BoxDecoration(
-            //     //color: Colors.greenAccent[100]!.withOpacity(0.5),
-            //     color: status == 'away'
-            //         ? Colors.greenAccent[100]!.withOpacity(0.5)
-            //         : Colors.amber[100]!.withOpacity(0.5),
-            //     borderRadius: BorderRadius.circular(10),
-            //     border: Border.all(
-            //       color: Colors.white,
-            //       style: BorderStyle.solid,
-            //       //width: 2,
-            //     ),
-            //   ),
-            //   child: Center(
-            //     child: Text(
-            //       'ไม่พบโรค',
-            //       style: TextStyle(
-            //         //color: Colors.green,
-            //         color:
-            //             status == 'away' ? Colors.green : Colors.amber,
-            //         fontWeight: FontWeight.bold,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
             Container(
               alignment: Alignment(0, 0.5),
               height: 50,
@@ -365,6 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 fontSize: 22.0,
               ),
             ),
+            SizedBox(height: 10), // เพิ่มระยะห่าง
             FutureBuilder(
               future: Dio().get('$SERVER/tomato/getDisease.php'),
               builder: (context, AsyncSnapshot<Response> snapshot) {
@@ -378,12 +162,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('disease_id = ${json[0]['disease_id']}'),
-                        Text('disease_dt = ${json[0]['disease_dt']}'),
-                        Text('disease_pic = ${json[0]['disease_pic']}'),
-                        Text('disease_ret1 = ${json[0]['disease_ret1']}'),
-                        Text('disease_ret2 = ${json[0]['disease_ret2']}'),
-                        Text('disease_ret3 = ${json[0]['disease_ret3']}'),
+                        Text('รูปที่ = ${json[0]['disease_id']}'),
+                        Text('ป/ด/ว = ${json[0]['disease_dt']}'),
+                        //Text('disease_pic = ${json[0]['disease_pic']}'),
+                        Text('ชื่อโรค = ${json[0]['disease_ret1']}'),
+                        //Text('disease_ret2 = ${json[0]['disease_ret2']}'),
+                        //Text('disease_ret3 = ${json[0]['disease_ret3']}'),
                         json[0]['disease_pic'].toString().isNotEmpty
                             ? Center(
                                 child: Image.network(
@@ -522,9 +306,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "aaa",
+                                      "(° C)",
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black87,
                                       ),
@@ -614,9 +398,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "aaa",
+                                      "(° C)",
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black87,
                                       ),
@@ -706,9 +490,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Text(
-                                      "aaa",
+                                      "(° C)",
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 10,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.black87,
                                       ),
@@ -743,82 +527,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     offset: Offset(0, 3),
                   ),
                 ],
-              ),
-              child: FutureBuilder(
-                future: Dio().get('$SERVER/tomato/getLogging.php'),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasData) {
-                    final res = snapshot.data;
-                    if (res!.data.toString().isEmpty) {
-                      return Text('Val Err!!');
-                    } else {
-                      final json = jsonDecode(res.data);
-                      return Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.asset(
-                              "assets/images/t_1.jpg",
-                              width: 80,
-                              height: 80,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Expanded(
-                            child: Text(
-                              "เซนเซอร์ความเข้มแสง",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                              ),
-                            ),
-                          ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              color: Colors.black12,
-                              width: 80,
-                              height: 80,
-                              child: Center(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "${json[0]['log_val4']}",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black54,
-                                      ),
-                                    ),
-                                    Text(
-                                      "aaa",
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.black87,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                  } else if (snapshot.hasError) {
-                    return Text('Error!! ${snapshot.error}');
-                  } else {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                },
               ),
             ),
 
@@ -862,6 +570,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       ElevatedButton(
                         onPressed: () async {
+                          log('$ARDUINO/led/off');
                           await Dio().get('$ARDUINO/led/off');
                         },
                         child: Text('ปิด LED'),

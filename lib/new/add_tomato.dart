@@ -101,6 +101,9 @@ class _AddTomatoState extends State<AddTomato> {
       _aaController.text = existingData['aa']; // เพิ่ม _aaController.text
       _bbController.text = existingData['bb']; // เพิ่ม _bbController.text
       _ccController.text = existingData['cc'];
+      if (_ccController.text.isNotEmpty) {
+        file = File(_ccController.text);
+      }
     }
 
     showModalBottomSheet(
@@ -109,7 +112,6 @@ class _AddTomatoState extends State<AddTomato> {
       context: context,
       builder: (_) => SingleChildScrollView(
         padding: EdgeInsets.only(
-          
           top: 30,
           left: 15,
           right: 15,
@@ -132,24 +134,24 @@ class _AddTomatoState extends State<AddTomato> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    file == null
+                    _ccController.text.isEmpty
                         ? Icon(
                             Icons.image,
                             size: 50,
                           )
                         : Image.file(
                             file!,
-                            fit: BoxFit.fill,
+                            fit: BoxFit.contain,
                           ),
                     SizedBox(height: 10), // เพิ่มระยะห่าง
-                    Text(
-                      _ccController
-                          .text, // ใช้ _ccController.text ที่คุณต้องการแสดง
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    // Text(
+                    //   _ccController
+                    //       .text, // ใช้ _ccController.text ที่คุณต้องการแสดง
+                    //   style: TextStyle(
+                    //     fontSize: 18,
+                    //     fontWeight: FontWeight.bold,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -170,21 +172,6 @@ class _AddTomatoState extends State<AddTomato> {
                 ),
               ),
             ),
-            // Align(
-            //   alignment: Alignment.center,
-            //   child: MaterialButton(
-            //     onPressed: () {
-            //       getcam();
-            //     },
-            //     color: Colors.blue[900],
-            //     child: Text(
-            //       "take from camera",
-            //       style: TextStyle(
-            //         color: Colors.white,
-            //       ),
-            //     ),
-            //   ),
-            // ),
             SizedBox(height: 10),
             TextField(
               controller: _descController,
@@ -245,14 +232,6 @@ class _AddTomatoState extends State<AddTomato> {
                 hintText: "วันและเวลาปลูก",
               ),
             ),
-            // SizedBox(height: 10),
-            //   ElevatedButton(
-            //     onPressed: () async {
-
-            //     },
-            //     child: Text("เลือกรูปภาพ"),
-            //   ),
-
             SizedBox(height: 20),
             Center(
               child: ElevatedButton(
@@ -268,6 +247,7 @@ class _AddTomatoState extends State<AddTomato> {
                   _descController.text = "";
                   _aaController.text = "";
                   _bbController.text = "";
+                  _ccController.text = "";
                   //_dateController.text = "";
 
                   Navigator.of(context).pop();
@@ -365,6 +345,7 @@ class _AddTomatoState extends State<AddTomato> {
     var img = await image.getImage(source: ImageSource.gallery);
     setState(() {
       file = File(img!.path);
+      _ccController.text = img.path;
     });
   }
 }
