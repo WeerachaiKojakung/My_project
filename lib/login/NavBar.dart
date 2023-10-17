@@ -50,31 +50,31 @@ class NavBar extends StatelessWidget {
           //   title: Text('Share'),
           //   onTap: () => null,
           // ),
-          ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Request'),
-            //onTap: () => null,
+          // ListTile(
+          //   leading: Icon(Icons.notifications),
+          //   title: Text('Request'),
+          //   //onTap: () => null,
             
-            onTap: () {
-                Get.to(() => MyWidget()); // แทน Medicine() ด้วยหน้าที่คุณต้องการเปิด
-              },
-            trailing: ClipOval(
-              child: Container(
-                color: Colors.red,
-                width: 20,
-                height: 20,
-                child: Center(
-                  child: Text(
-                    '8',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          //   onTap: () {
+          //       Get.to(() => MyWidget()); // แทน Medicine() ด้วยหน้าที่คุณต้องการเปิด
+          //     },
+          //   // trailing: ClipOval(
+          //   //   child: Container(
+          //   //     color: Colors.red,
+          //   //     width: 20,
+          //   //     height: 20,
+          //   //     child: Center(
+          //   //       child: Text(
+          //   //         '8',
+          //   //         style: TextStyle(
+          //   //           color: Colors.white,
+          //   //           fontSize: 12,
+          //   //         ),
+          //   //       ),
+          //   //     ),
+          //   //   ),
+          //   // ),
+          // ),
           // Divider(),
           // ListTile(
           //   leading: Icon(Icons.settings),

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
@@ -48,6 +49,19 @@ class HomeScreen extends StatefulWidget {
 String status = 'away';
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Timer.periodic(Duration(milliseconds: 10000), (timer) { 
+      setState(() {
+        
+      });
+    });
+  }
+
+
   @override
   Widget build(
     BuildContext context,
@@ -187,38 +201,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               },
             ),
-            // SizedBox(height: 20.0),
-            // FutureBuilder(
-            //   future: Dio().get('$SERVER/tomato/getLogging.php'),
-            //   builder: (context, snapshot) {
-            //     if (snapshot.hasData) {
-            //       final res = snapshot.data; //คืนค่ามาต้องเป็น JSON เท่านั้น
-            //       if (res!.data.toString().isEmpty) {
-            //         return Text('Val Err!!');
-            //       } else {
-            //         final json = jsonDecode(res.data);
-            //         return Column(
-            //           crossAxisAlignment: CrossAxisAlignment.start,
-            //           children: [
-            //             Text('val1 = ${json[0]['log_val1']}'),
-            //             Text('val2 = ${json[0]['log_val2']}'),
-            //             Text('val3 = ${json[0]['log_val3']}'),
-            //             Text('val4 = ${json[0]['log_val4']}'),
-            //             Text('val5 = ${json[0]['log_val5']}'),
-            //             Text('val6 = ${json[0]['log_val6']}'),
-            //             Text('val7 = ${json[0]['log_val7']}'),
-            //             Text('val8 = ${json[0]['log_val8']}'),
-            //             Text('val9 = ${json[0]['log_val9']}'),
-            //           ],
-            //         );
-            //       }
-            //     } else if (snapshot.hasError) {
-            //       return Text('Error!! ${snapshot.error}');
-            //     } else {
-            //       return Center(child: CircularProgressIndicator());
-            //     }
-            //   },
-            // ),
             const SizedBox(height: 5),
             Container(
               padding: const EdgeInsets.only(left: 25),
@@ -390,7 +372,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${json[0]['log_val2']}",
+                                      "${json[0]['log_val3']}",
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -482,7 +464,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      "${json[0]['log_val3']}",
+                                      "${json[0]['log_val2']}",
                                       style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,

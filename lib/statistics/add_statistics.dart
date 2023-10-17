@@ -225,16 +225,16 @@ class PageHistory extends StatelessWidget {
             },
           ),
           Divider(),
-          ListTile(
-            leading: Icon(Icons.content_paste_go),
-            title: Text('ข้อมูลการให้ปุ๋ย'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => kState()),
-              );
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.content_paste_go),
+          //   title: Text('ข้อมูลการให้ปุ๋ย'),
+          //   onTap: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => kState()),
+          //     );
+          //   },
+          // ),
           Divider(),
         ],
       ),

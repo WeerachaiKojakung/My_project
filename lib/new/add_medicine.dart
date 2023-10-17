@@ -160,7 +160,7 @@ class _AddMedicineState extends State<AddMedicine> {
               controller: _bbController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                hintText: "โรงเรือนที่ปลูก",
+                hintText: "โรงเรือนที่ให้ยา",
               ),
             ),
             SizedBox(height: 10),
